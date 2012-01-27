@@ -48,7 +48,7 @@ public class GeoLocationDemo extends Application implements
         leftSide.addComponent(new Label(
                 "<h1>GeoLocation demo</h1>"
                         + "<p>Supported browsers:</p>"
-                        + "<ul><li>Firefox 3.5+</li><li>Safari Mobile (iPhone 3GS)</li></ul>"
+                        + "<ul><li>Firefox 3.5+</li><li>Google Chrome</li><li>Safari</li><li>iOS browser</li></ul>"
                         + "<p>This demo application uses the <a href=\"http://vaadin.com/forum/-/message_boards/message/95530\">Google Maps Widget</a> by Henri Muurimaa.</p>",
                 Label.CONTENT_XHTML));
 
