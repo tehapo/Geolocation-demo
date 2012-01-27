@@ -6,18 +6,19 @@ import org.vaadin.hezamu.googlemapwidget.GoogleMap;
 import org.vaadin.hezamu.googlemapwidget.GoogleMap.MapControl;
 import org.vaadin.hezamu.googlemapwidget.overlay.BasicMarker;
 import org.vaadin.teemu.geolocation.GeoLocation.GeoLocationErrorEvent;
-import org.vaadin.teemu.geolocation.GeoLocation.GeoLocationRecievedEvent;
+import org.vaadin.teemu.geolocation.GeoLocation.GeoLocationReceivedEvent;
 import org.vaadin.teemu.geolocation.GeoLocation.GeoLocationUnsupportedEvent;
 
 import com.vaadin.Application;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
-import com.vaadin.ui.Button.ClickEvent;
 
+@SuppressWarnings("serial")
 public class GeoLocationDemo extends Application implements
         Button.ClickListener, GeoLocation.GeoLocationListener {
 
@@ -44,13 +45,12 @@ public class GeoLocationDemo extends Application implements
         leftSide.setMargin(true);
         leftSide.setSpacing(true);
         mainLayout.addComponent(leftSide);
-        leftSide
-                .addComponent(new Label(
-                        "<h1>GeoLocation demo</h1>"
-                                + "<p>Supported browsers:</p>"
-                                + "<ul><li>Firefox 3.5+</li><li>Safari Mobile (iPhone 3GS)</li></ul>"
-                                + "<p>This demo application uses the <a href=\"http://vaadin.com/forum/-/message_boards/message/95530\">Google Maps Widget</a> by Henri Muurimaa.</p>",
-                        Label.CONTENT_XHTML));
+        leftSide.addComponent(new Label(
+                "<h1>GeoLocation demo</h1>"
+                        + "<p>Supported browsers:</p>"
+                        + "<ul><li>Firefox 3.5+</li><li>Safari Mobile (iPhone 3GS)</li></ul>"
+                        + "<p>This demo application uses the <a href=\"http://vaadin.com/forum/-/message_boards/message/95530\">Google Maps Widget</a> by Henri Muurimaa.</p>",
+                Label.CONTENT_XHTML));
 
         latitude = new Label("not yet requested");
         longitude = new Label("not yet requested");
@@ -91,15 +91,15 @@ public class GeoLocationDemo extends Application implements
         requestButton.setCaption(REQUEST_BUTTON_CAPTION);
     }
 
-    public void geoLocationRecieved(GeoLocationRecievedEvent event) {
+    public void geoLocationReceived(GeoLocationReceivedEvent event) {
         mainWindow.showNotification(event.getLatitude() + ", "
                 + event.getLongitude() + ", accuracy in meters "
                 + event.getAccuracyInMeters());
         latitude.setValue(event.getLatitude());
         longitude.setValue(event.getLongitude());
 
-        Point2D.Double point = new Point2D.Double(event.getLongitude(), event
-                .getLatitude());
+        Point2D.Double point = new Point2D.Double(event.getLongitude(),
+                event.getLatitude());
         map.setCenter(point);
         map.addMarker(new BasicMarker(1L, point, "Your current location"));
         map.setZoom(14);
